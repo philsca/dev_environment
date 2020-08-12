@@ -65,9 +65,22 @@ Virtual box will open a window where you can log in to VM
 
     Username: vagrant
     Password: vagrant
+	
+After you've fire up the vm in graphical mode for the first time you'll probably want to adjust the vm 
+screen resolution.  Right click on the VirtualBox display icon at the bottom of the window and pick an 
+appropriate screen resolution and display mode to suite your monitor.
 
 To shutdown the VM ust go to the development_vm directory is a command line and run:
 
     vagrant halt
 
 This will perform a clean shutdown of the environment.
+
+## Configuring the environment
+
+### User configuration
+
+Edit the file ~/shared/scripts/user_env.sh
+Set your own name, email address etc.
+
+
