@@ -32,7 +32,7 @@ sudo dnf install -y git
 echo "Installing VSCode..."
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-sudo dnf check-update
+#sudo dnf check-update
 sudo dnf install -y code
 
 #
@@ -47,7 +47,7 @@ sudo dnf install -y code
 # Switching to Google Chrome fixed it for me.
 echo "Installing Google Chrome..."
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-sudo yum install ./google-chrome-stable_current_*.rpm
+sudo yum install -y ./google-chrome-stable_current_*.rpm
 
 
 #
@@ -70,8 +70,7 @@ sudo systemctl start postgresql-11
 
 #
 # pgAdmin4
-# Do we need this repo?
-### sudo rpm -i https://ftp.postgresql.org/pub/pgadmin/pgadmin4/yum/pgadmin4-redhat-repo-1-1.noarch.rpm
+sudo rpm -i https://ftp.postgresql.org/pub/pgadmin/pgadmin4/yum/pgadmin4-redhat-repo-1-1.noarch.rpm
 sudo yum install -y pgadmin4-desktop
 
 

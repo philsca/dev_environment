@@ -68,7 +68,7 @@ Vagrant.configure("2") do |config|
 	 vb.customize ["modifyvm", :id, "--vrde", "off"]
   
      # Customize the amount of memory on the VM:
-     vb.memory = "4096"
+     vb.memory = "6144"
    end
 
   # Enable provisioning with a shell script. Additional provisioners such as
