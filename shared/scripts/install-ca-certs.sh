@@ -26,6 +26,6 @@ java_truststore="$java_home_path/jre/lib/security/cacerts"
 # remove any existing aliases and add certs
 #sudo $java_keytool  -delete -alias $CA_ALIAS  -keystore $java_truststore
 #sudo $java_keytool  -delete -alias $INT_ALIAS -keystore $java_truststore
-sudo $java_keytool  -importcert -file $CERT_PATH/$CA_CERT_FILE  -keystore $java_truststore -alias $CA_ALIAS
-sudo $java_keytool  -importcert -file $CERT_PATH/$INT_CERT_FILE -keystore $java_truststore -alias $INT_ALIAS
+sudo $java_keytool  -importcert -file $CERT_SOURCE_PATH/$CA_CERT_FILE  -keystore $java_truststore -alias $CA_ALIAS
+sudo $java_keytool  -importcert -file $CERT_SOURCE_PATH/$INT_CERT_FILE -keystore $java_truststore -alias $INT_ALIAS
 

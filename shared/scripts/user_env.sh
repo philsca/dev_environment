@@ -2,5 +2,5 @@
 #
 # Edit env variables for your real name and email address
 #
-export USER_FULL_NAME="Phil Scally"
-export USER_EMAIL_ADDRESS=phil.scally1@nhs.net
+export USER_FULL_NAME="YOUR NAME HERE"
+export USER_EMAIL_ADDRESS=your.name.here@nhs.net
