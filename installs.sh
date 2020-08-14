@@ -39,16 +39,42 @@ sudo dnf install -y code
 # Browser.  
 # Chromium is reasonably close to chrome and is in the default repos.
 # Google chrome is a bit more problematic
-echo "Installing chromium"
-sudo dnf install -y chromium
+#echo "Installing chromium"
+#sudo dnf install -y chromium
 
-# TODO
-# - OpenVPN
-# - NHSBSA's cert authority
-# - User-specific config 
-#     (may be better to move this out of provisioning and into a manually triggered script)
+# Note: removed Chromium install as it does not play nicely with pgAdmin below.
+# Seems not to register with desktop as default browser, which causes pgAdmin4 startup to barf.
+# Switching to Google Chrome fixed it for me.
+echo "Installing Google Chrome..."
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+sudo yum install ./google-chrome-stable_current_*.rpm
+
+
 #
+# Postgres v11
+# Disable the built-in PostgreSQL module:
+sudo dnf -qy module disable postgresql
+
+# Install the repository RPM from postgresql.org
+# Note: url is specific to Centos v8
+sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+
+
+# Install PostgreSQL v11:
+sudo dnf install -y postgresql11-server
+
+# initialize the database and enable automatic start:
+sudo /usr/pgsql-11/bin/postgresql-11-setup initdb
+sudo systemctl enable postgresql-11
+sudo systemctl start postgresql-11
+
 #
+# pgAdmin4
+# Do we need this repo?
+### sudo rpm -i https://ftp.postgresql.org/pub/pgadmin/pgadmin4/yum/pgadmin4-redhat-repo-1-1.noarch.rpm
+sudo yum install -y pgadmin4-desktop
+
+
 
 
 

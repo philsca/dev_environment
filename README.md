@@ -12,13 +12,15 @@ Assumes we're running on personal kit so the objectives are:
 * OS - Centos8
 * Desktop - Xfce
 * Dev tools - OpenJDK8, Maven, Git
-* Browser - Chromium
+* Browser - Google chrome
 * IDE - VSCode
+* Database - Postgres v11
 
 ## Pre-requisites
 You will need to manually install onto your pc:
 - VirtualBox (https://www.virtualbox.org/)
 - Vagrant (https://www.vagrantup.com/)
+- OpenVPN (and configure this to connect to the BSA estate)
 
 You will also need 
 - 6Gb+ of RAM in order to assign 4Gb to the vm.  More is better.
@@ -34,6 +36,8 @@ This contains:
 * Vagrantfile - A script to tell Vagrant how to build a vm withing VirtualBox
 * installs.sh - A shell script to install the desktop and tools listed in the description (this is run automatically)
 * shared - A folder that will be mapped to the guest development vm.
+* shared\certificates - BSA Intermediate and CA certificates
+* shared\scripts - Optional post-install setup utility scripts
 
 
 ## Environment creation
@@ -82,5 +86,20 @@ This will perform a clean shutdown of the environment.
 
 Edit the file ~/shared/scripts/user_env.sh
 Set your own name, email address etc.
+
+### SSH key generation
+If you already have an ssh key to use then you can copy the key directly to ~/.ssh
+If not, then the script ~/shared/scripts/generate_ssh_key.sh will generate a new ssh key suitable for upload to your git profile.
+You'll be prompted for a password for your private key.
+
+### Certificate installation
+You'll need to setup the VM to trust the BSA CA certificates.
+Run the script ~/shared/scripts/install_ca_certs.sh to do this.
+This will install the certs both to the OS and to the java trust store.
+(Note: - when prompted for the trust store password, it's "changeit").
+
+
+
+
 
 
