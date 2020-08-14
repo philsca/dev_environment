@@ -23,7 +23,7 @@ You will need to manually install onto your pc:
 - OpenVPN (and configure this to connect to the BSA estate)
 
 You will also need 
-- 6Gb+ of RAM in order to assign 4Gb to the vm.  More is better.
+- 6Gb+ of RAM in order to assign 4Gb to the vm.  More is better.  If you have more to spare then edit the setting `vb.memory = "4096"` in the Vagrantfile
 - At least 4Gb of free disk space
 - An internet connection over which you're happy to load several gigs of data.  Top tip: don't use your phone.
 
@@ -35,7 +35,8 @@ You should have a directory *development_vm*.  All commands listed should be run
 This contains:
 * Vagrantfile - A script to tell Vagrant how to build a vm withing VirtualBox
 * installs.sh - A shell script to install the desktop and tools listed in the description (this is run automatically)
-* shared - A folder that will be mapped to the guest development vm.
+* shared - A folder that will be mapped to the guest development vm as `~/shared`.  
+You can transfer files between the host pc and the virtual machine via this folder.
 * shared\certificates - BSA Intermediate and CA certificates
 * shared\scripts - Optional post-install setup utility scripts
 
@@ -85,10 +86,12 @@ This will perform a clean shutdown of the environment.
 ### User configuration
 
 Edit the file ~/shared/scripts/user_env.sh
-Set your own name, email address etc.
+
+Set your own name, email address etc.  Later scripts rely on this config, so set this first.
 
 ### SSH key generation
 If you already have an ssh key to use then you can copy the key directly to ~/.ssh
+
 If not, then the script ~/shared/scripts/generate_ssh_key.sh will generate a new ssh key suitable for upload to your git profile.
 You'll be prompted for a password for your private key.
 
@@ -97,6 +100,17 @@ You'll need to setup the VM to trust the BSA CA certificates.
 Run the script ~/shared/scripts/install_ca_certs.sh to do this.
 This will install the certs both to the OS and to the java trust store.
 (Note: - when prompted for the trust store password, it's "changeit").
+
+### Maven config
+Run the file ~/shared/scripts/configure_maven.sh to create a maven config suitable for a vpn connection to dps-nexus.service.nhsbsa.
+This will not overwite any existing config.
+
+### Git config
+Run the file ~/shared/scripts/configure_git.sh to create a local git config file (name and email address).
+
+
+
+
 
 
 
